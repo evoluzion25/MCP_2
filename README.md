@@ -34,6 +34,12 @@ Example:
 Keep the env file current with any known keys from secrets (values not exposed):
 - `pwsh ./scripts/update-env-from-secrets.ps1`
 
+## Bitwarden setup (central secrets manager)
+- Install: `pwsh ./scripts/install-bitwarden.ps1`
+- Login + unlock + set session: `pwsh ./scripts/bitwarden-login.ps1`
+- Seed a template item with required fields: `pwsh ./scripts/bitwarden-seed.ps1 -ItemName "MCP Secrets"`
+- Bootstrap secrets into Docker MCP: `pwsh ./scripts/bootstrap-machine.ps1 -Source bitwarden`
+
 Additional secret mappings supported:
 - OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY, PERPLEXITY_API_KEY
 - CLOUDFLARE_API_KEY, CLICKUP_API_KEY
