@@ -26,6 +26,7 @@ This repo shows how to manage MCP servers using Docker MCP catalogs.
 
 ## Custom catalog templates
 See `catalogs/custom_catalog.yaml` for a template. Edit values as needed.
+See also `catalogs/service-templates.yaml` for pre-wired placeholders for popular services (OpenAI, Anthropic, ClickUp, Cloudflare, Hugging Face). Import the file or copy entries you need.
 
 ## Using in VS Code
 - Connect: `docker mcp client connect vscode`

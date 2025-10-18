@@ -32,3 +32,14 @@ Example:
 
 Keep the env file current with any known keys from secrets (values not exposed):
 - `pwsh ./scripts/update-env-from-secrets.ps1`
+
+Additional secret mappings supported:
+- OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY, PERPLEXITY_API_KEY
+- CLOUDFLARE_API_KEY, CLICKUP_API_KEY
+- HF_TOKEN, RG_API_KEY
+- RUNPOD_PASSKEY, RUNPOD_API_KEY2, RUNPOD_S3_KEY2_USER, RUNPOD_S3_KEY2
+- GCS_ACCESS_KEY, GCS_SECRET_KEY, GCS_BUCKET
+
+Service templates:
+- `catalogs/service-templates.yaml` contains placeholders for common services with standard secret names. Import this file or copy entries you need into your own catalog, then run:
+   - `docker mcp catalog import .\catalogs\service-templates.yaml`

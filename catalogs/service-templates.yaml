@@ -1,0 +1,72 @@
+name: mcp2-service-templates
+displayName: MCP_2 Service Templates
+registry:
+  openai:
+    description: "OpenAI tools via community MCP server"
+    title: "OpenAI"
+    type: "server"
+    image: "mcp/openai:latest"
+    secrets:
+      - name: "openai.api_key"
+        env: "OPENAI_API_KEY"
+    env:
+      - name: OPENAI_MCP_TRANSPORT
+        value: stdio
+    command:
+      - "--transport=stdio"
+
+  anthropic:
+    description: "Anthropic tools via community MCP server"
+    title: "Anthropic"
+    type: "server"
+    image: "mcp/anthropic:latest"
+    secrets:
+      - name: "anthropic.api_key"
+        env: "ANTHROPIC_API_KEY"
+    env:
+      - name: ANTHROPIC_MCP_TRANSPORT
+        value: stdio
+    command:
+      - "--transport=stdio"
+
+  clickup:
+    description: "ClickUp integration via MCP"
+    title: "ClickUp"
+    type: "server"
+    image: "mcp/clickup:latest"
+    secrets:
+      - name: "clickup.api_key"
+        env: "CLICKUP_API_KEY"
+    env:
+      - name: CLICKUP_MCP_TRANSPORT
+        value: stdio
+    command:
+      - "--transport=stdio"
+
+  cloudflare:
+    description: "Cloudflare API MCP server"
+    title: "Cloudflare"
+    type: "server"
+    image: "mcp/cloudflare:latest"
+    secrets:
+      - name: "cloudflare.api_key"
+        env: "CLOUDFLARE_API_KEY"
+    env:
+      - name: CLOUDFLARE_MCP_TRANSPORT
+        value: stdio
+    command:
+      - "--transport=stdio"
+
+  huggingface:
+    description: "Hugging Face API MCP server"
+    title: "Hugging Face"
+    type: "server"
+    image: "mcp/huggingface:latest"
+    secrets:
+      - name: "huggingface.token"
+        env: "HF_TOKEN"
+    env:
+      - name: HF_MCP_TRANSPORT
+        value: stdio
+    command:
+      - "--transport=stdio"

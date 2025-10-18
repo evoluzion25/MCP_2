@@ -10,6 +10,21 @@ $map = @{
   'brave.api_key'          = 'BRAVE_API_KEY'
   'exa.api_key'            = 'EXA_API_KEY'
   'github-server.token'    = 'GITHUB_TOKEN'
+  'openai.api_key'         = 'OPENAI_API_KEY'
+  'anthropic.api_key'      = 'ANTHROPIC_API_KEY'
+  'gemini.api_key'         = 'GEMINI_API_KEY'
+  'perplexity.api_key'     = 'PERPLEXITY_API_KEY'
+  'cloudflare.api_key'     = 'CLOUDFLARE_API_KEY'
+  'clickup.api_key'        = 'CLICKUP_API_KEY'
+  'huggingface.token'      = 'HF_TOKEN'
+  'rg.api_key'             = 'RG_API_KEY'
+  'runpod.passkey'         = 'RUNPOD_PASSKEY'
+  'runpod.api_key2'        = 'RUNPOD_API_KEY2'
+  'runpod.s3_user'         = 'RUNPOD_S3_KEY2_USER'
+  'runpod.s3_key'          = 'RUNPOD_S3_KEY2'
+  'gcs.access_key'         = 'GCS_ACCESS_KEY'
+  'gcs.secret_key'         = 'GCS_SECRET_KEY'
+  'gcs.bucket'             = 'GCS_BUCKET'
 }
 
 function Add-EnvLine {

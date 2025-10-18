@@ -42,6 +42,21 @@ Get-Content $EnvFile | ForEach-Object {
     'BRAVE_API_KEY'       { Set-McpSecret -Name 'brave.api_key' -Value $val }
     'EXA_API_KEY'         { Set-McpSecret -Name 'exa.api_key' -Value $val }
     'GITHUB_TOKEN'        { Set-McpSecret -Name 'github-server.token' -Value $val }
+    'OPENAI_API_KEY'      { Set-McpSecret -Name 'openai.api_key' -Value $val }
+    'ANTHROPIC_API_KEY'   { Set-McpSecret -Name 'anthropic.api_key' -Value $val }
+    'GEMINI_API_KEY'      { Set-McpSecret -Name 'gemini.api_key' -Value $val }
+    'PERPLEXITY_API_KEY'  { Set-McpSecret -Name 'perplexity.api_key' -Value $val }
+    'CLOUDFLARE_API_KEY'  { Set-McpSecret -Name 'cloudflare.api_key' -Value $val }
+    'CLICKUP_API_KEY'     { Set-McpSecret -Name 'clickup.api_key' -Value $val }
+    'HF_TOKEN'            { Set-McpSecret -Name 'huggingface.token' -Value $val }
+    'RG_API_KEY'          { Set-McpSecret -Name 'rg.api_key' -Value $val }
+    'RUNPOD_PASSKEY'      { Set-McpSecret -Name 'runpod.passkey' -Value $val }
+    'RUNPOD_API_KEY2'     { Set-McpSecret -Name 'runpod.api_key2' -Value $val }
+    'RUNPOD_S3_KEY2_USER' { Set-McpSecret -Name 'runpod.s3_user' -Value $val }
+    'RUNPOD_S3_KEY2'      { Set-McpSecret -Name 'runpod.s3_key' -Value $val }
+    'GCS_ACCESS_KEY'      { Set-McpSecret -Name 'gcs.access_key' -Value $val }
+    'GCS_SECRET_KEY'      { Set-McpSecret -Name 'gcs.secret_key' -Value $val }
+    'GCS_BUCKET'          { Set-McpSecret -Name 'gcs.bucket' -Value $val }
     default               { Write-Host "Unmapped env key: $key (skipping)" -ForegroundColor DarkGray }
   }
 }
