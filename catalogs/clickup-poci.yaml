@@ -1,0 +1,38 @@
+name: mcp2-clickup
+displayName: MCP_2 ClickUp POCI
+registry:
+  clickup:
+    description: "ClickUp API via POCI tools"
+    title: "ClickUp"
+    type: "poci"
+    tools:
+      - name: "clickup_request"
+        description: "Generic ClickUp REST request"
+        parameters:
+          type: object
+          properties:
+            method:
+              type: string
+              enum: [GET,POST,PATCH,PUT,DELETE]
+            path:
+              type: string
+              description: "e.g., /api/v2/team"
+            body:
+              type: object
+              description: "JSON body for non-GET requests"
+          required: [method, path]
+        container:
+          image: curlimages/curl:8.11.1
+          command:
+            - "sh"
+            - "-lc"
+            - >-
+              curl -sS -X {{method}} "https://api.clickup.com{{path}}"
+              -H "Authorization: ${CLICKUP_API_KEY}"
+              -H "Content-Type: application/json"
+              {{#if body}}
+              -d '{{body | tojson}}'
+              {{/if}}
+          env:
+            - name: CLICKUP_API_KEY
+              valueFromSecret: clickup.api_key

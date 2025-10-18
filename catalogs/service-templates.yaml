@@ -33,15 +33,32 @@ registry:
     description: "ClickUp integration via MCP"
     title: "ClickUp"
     type: "server"
-    image: "mcp/clickup:latest"
+    image: "mcp/poci:latest"
     secrets:
       - name: "clickup.api_key"
         env: "CLICKUP_API_KEY"
+      - name: "clickup.team_id"
+        env: "CLICKUP_TEAM_ID"
     env:
       - name: CLICKUP_MCP_TRANSPORT
         value: stdio
     command:
       - "--transport=stdio"
+    tools:
+      - name: "clickup_list_spaces"
+        description: "List ClickUp spaces for team"
+        parameters:
+          type: object
+          properties: {}
+        container:
+          image: "curlimages/curl:8.10.1"
+          command:
+            - "sh"
+            - "-lc"
+            - |
+              curl -s -H "Authorization: $CLICKUP_API_KEY" \
+                   -H "Content-Type: application/json" \
+                   "https://api.clickup.com/api/v2/team/$CLICKUP_TEAM_ID/space" | jq -c .
 
   cloudflare:
     description: "Cloudflare API MCP server"

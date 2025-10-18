@@ -7,8 +7,11 @@ param(
 $ErrorActionPreference='Stop'
 
 function Get-Manifest {
-  $yamlPath = Join-Path $PSScriptRoot '..' 'secrets' 'manifest.yaml'
   $jsonPath = Join-Path $PSScriptRoot '..' 'secrets' 'manifest.json'
+  $yamlPath = Join-Path $PSScriptRoot '..' 'secrets' 'manifest.yaml'
+  if (Test-Path $jsonPath) {
+    return (Get-Content $jsonPath -Raw) | ConvertFrom-Json
+  }
   if (Test-Path $yamlPath) {
     $text = Get-Content $yamlPath -Raw
     if (Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue) {
@@ -16,11 +19,8 @@ function Get-Manifest {
     } else {
       throw "ConvertFrom-Yaml not available. Install 'powershell-yaml' (Install-Module powershell-yaml) or provide secrets/manifest.json"
     }
-  } elseif (Test-Path $jsonPath) {
-    return (Get-Content $jsonPath -Raw) | ConvertFrom-Json
-  } else {
-    throw "No manifest found. Expected: $yamlPath or $jsonPath"
   }
+  throw "No manifest found. Expected: $jsonPath or $yamlPath"
 }
 
 $mf = Get-Manifest

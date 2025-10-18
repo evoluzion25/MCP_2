@@ -22,6 +22,12 @@ Bitwarden quickstart (PowerShell):
 - Verify: bw list items | Out-Null
 - Bootstrap into Docker MCP: pwsh ./scripts/bootstrap-machine.ps1 -Source bitwarden
 
+Field naming convention:
+- The bootstrap reads all Bitwarden item fields with names matching ENV-style keys: [A-Z0-9_]+
+- Example fields you can create in any item:
+   - BRAVE_API_KEY, EXA_API_KEY, OPENAI_API_KEY, CLICKUP_API_KEY, CLICKUP_TEAM_ID, etc.
+   - Values are taken as-is and mapped per secrets/manifest.json
+
 How it works:
 1) You store secrets centrally.
 2) On a new device, run:
