@@ -13,12 +13,14 @@ You have a few durable options to keep one source of truth and sync into Docker 
 - Use `./scripts/update-env-from-secrets.ps1` to ensure keys exist.
 
 ## Option C: Central secrets manager (recommended)
-Pick one of these as the online source of truth, then run a bootstrap per device:
-- 1Password CLI (op)
-- Bitwarden CLI (bw)
-- Doppler
-- Infisical
-- Azure Key Vault
+Pick one as the online source of truth, then run a bootstrap per device. Free and CLI-friendly: Bitwarden.
+
+Bitwarden quickstart (PowerShell):
+- Install: winget install Bitwarden.Bitwarden && winget install Bitwarden.CLI
+- Login: bw login
+- Unlock: $env:BW_SESSION = (bw unlock --raw)
+- Verify: bw list items | Out-Null
+- Bootstrap into Docker MCP: pwsh ./scripts/bootstrap-machine.ps1 -Source bitwarden
 
 How it works:
 1) You store secrets centrally.

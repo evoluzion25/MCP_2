@@ -42,6 +42,7 @@ Get-Content $EnvFile | ForEach-Object {
     'BRAVE_API_KEY'       { Set-McpSecret -Name 'brave.api_key' -Value $val }
     'EXA_API_KEY'         { Set-McpSecret -Name 'exa.api_key' -Value $val }
     'GITHUB_TOKEN'        { Set-McpSecret -Name 'github-server.token' -Value $val }
+  'CLICKUP_TEAM_ID'     { Set-McpSecret -Name 'clickup.team_id' -Value $val }
     'OPENAI_API_KEY'      { Set-McpSecret -Name 'openai.api_key' -Value $val }
     'ANTHROPIC_API_KEY'   { Set-McpSecret -Name 'anthropic.api_key' -Value $val }
     'GEMINI_API_KEY'      { Set-McpSecret -Name 'gemini.api_key' -Value $val }

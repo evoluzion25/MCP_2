@@ -16,6 +16,7 @@ $map = @{
   'perplexity.api_key'     = 'PERPLEXITY_API_KEY'
   'cloudflare.api_key'     = 'CLOUDFLARE_API_KEY'
   'clickup.api_key'        = 'CLICKUP_API_KEY'
+  'clickup.team_id'        = 'CLICKUP_TEAM_ID'
   'huggingface.token'      = 'HF_TOKEN'
   'rg.api_key'             = 'RG_API_KEY'
   'runpod.passkey'         = 'RUNPOD_PASSKEY'
