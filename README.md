@@ -19,6 +19,7 @@ Infrastructure-as-code for managing MCP servers via Docker Desktop (DD), served 
    - `docker mcp gateway run`
 
 See `docs/catalog-howto.md` for managing catalogs and adding custom servers, and `docs/cloudflare-tunnel.md` for tunnel setup.
+For one place to keep secrets across devices, see `docs/secrets-centralization.md`.
 
 ## Credentials integration with dev-env-config
 Keep your secrets centralized in `C:\DevWorkspace\credentials.env` from the dev-env-config repo. Then sync them into Docker MCP secrets:
