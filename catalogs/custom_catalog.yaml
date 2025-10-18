@@ -1,0 +1,35 @@
+name: mcp2-custom
+displayName: MCP_2 Custom Catalog
+registry:
+  example-server:
+    description: "Example custom MCP server"
+    title: "Example Server"
+    type: "server"
+    image: "example/example-mcp-server:latest"
+    tools:
+      - name: "hello_world"
+    secrets:
+      - name: "example-server.api_key"
+        env: "EXAMPLE_API_KEY"
+        example: "your-api-key-here"
+    env:
+      - name: "EXAMPLE_TRANSPORT"
+        value: "stdio"
+    command:
+      - "--transport=stdio"
+    config:
+      - name: "example-server"
+        description: "Example server configuration"
+        type: "object"
+        properties:
+          data_path:
+            type: "string"
+        required: []
+    metadata:
+      category: "misc"
+      tags: ["example"]
+      license: "MIT"
+      owner: "you"
+    readme: "https://example.com/example-mcp-server"
+    source: "https://example.com/example-mcp-server"
+    icon: "https://example.com/icon.png"

@@ -1,0 +1,24 @@
+registry:
+  github-server:
+    description: "MCP server for GitHub API interactions"
+    title: "GitHub Server"
+    type: "server"
+    image: "mcp/github-server:latest"
+    tools:
+      - name: "search_issues"
+      - name: "get_repo"
+      - name: "list_pull_requests"
+    secrets:
+      - name: "github-server.token"
+        env: "GITHUB_TOKEN"
+        example: "ghp_..."
+    env:
+      - name: "GITHUB_MCP_TRANSPORT"
+        value: "stdio"
+    command:
+      - "--transport=stdio"
+    metadata:
+      category: "developer-tools"
+      tags: ["github", "api"]
+      license: "MIT"
+      owner: "community"
