@@ -19,3 +19,13 @@ Infrastructure-as-code for managing MCP servers via Docker Desktop (DD), served 
    - `docker mcp gateway run`
 
 See `docs/catalog-howto.md` for managing catalogs and adding custom servers, and `docs/cloudflare-tunnel.md` for tunnel setup.
+
+## Credentials integration with dev-env-config
+Keep your secrets centralized in `C:\DevWorkspace\credentials.env` from the dev-env-config repo. Then sync them into Docker MCP secrets:
+
+- `scripts/sync-secrets.ps1` (reads `C:\DevWorkspace\credentials.env` by default)
+  - Maps keys like `BRAVE_API_KEY`, `EXA_API_KEY`, `GITHUB_TOKEN` to MCP secret names (`brave.api_key`, `exa.api_key`, `github-server.token`).
+  - Use `-DryRun` to preview without writing.
+
+Example:
+- `pwsh ./scripts/sync-secrets.ps1`
