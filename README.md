@@ -29,3 +29,6 @@ Keep your secrets centralized in `C:\DevWorkspace\credentials.env` from the dev-
 
 Example:
 - `pwsh ./scripts/sync-secrets.ps1`
+
+Keep the env file current with any known keys from secrets (values not exposed):
+- `pwsh ./scripts/update-env-from-secrets.ps1`

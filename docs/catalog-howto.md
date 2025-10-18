@@ -33,9 +33,10 @@ See `catalogs/custom_catalog.yaml` for a template. Edit values as needed.
 - Tools become available via the MCP gateway.
 
 ## Credentials from dev-env-config
-- Maintain secrets in `C:\DevWorkspace\credentials.env` (see `C:\DevWorkspace\DevWorkspace\credentials.env.template` for keys).
-- Sync into Docker MCP secrets:
-  - `pwsh ./scripts/sync-secrets.ps1` (use `-DryRun` to preview)
+- Maintain secrets in `C:\DevWorkspace\credentials.env` (template lives at `C:\DevWorkspace\credentials.env.template`).
+- Sync into Docker MCP secrets: `pwsh ./scripts/sync-secrets.ps1` (use `-DryRun` to preview)
+- Backfill env with missing keys discovered from secrets (keeps values blank, for tracking):
+  - `pwsh ./scripts/update-env-from-secrets.ps1`
 
 ## References
 - Docker MCP Catalog docs: https://github.com/docker/mcp-gateway/blob/main/docs/catalog.md
