@@ -70,6 +70,7 @@ This single command:
 - **[Docker Compose Architecture](docs/DOCKER_COMPOSE_ARCHITECTURE.md)** ⭐ - Production-ready setup (RECOMMENDED)
 - **[Custom Server Installation](docs/CUSTOM_SERVER_INSTALLATION_GUIDE.md)** ⭐ - Complete guide to adding custom MCP servers
 - **[Catalog Strategy](docs/CATALOG_STRATEGY.md)** ⭐ - Two-catalog system (official + custom)
+- **[ClickUp UI Maintenance](docs/CLICKUP_UI_MAINTENANCE.md)** - Scripts to keep ClickUp visible in Docker Desktop UI
 - **[Architecture Overview](docs/ARCHITECTURE.md)** - Local + Internet access architecture
 - **[Bitwarden Setup Guide](docs/BITWARDEN_SETUP_GUIDE.md)** - Complete secret management setup
 - **[Adding Custom Servers](docs/ADDING_CUSTOM_SERVERS.md)** - How to add servers to catalogs
