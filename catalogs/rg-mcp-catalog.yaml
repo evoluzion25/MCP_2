@@ -1,0 +1,88 @@
+name: rg-mcp
+displayName: RG Custom MCP Catalog
+
+registry:
+  clickup:
+    description: "Search, create, and retrieve tasks and documents, add comments, and track time through natural language commands. Comprehensive ClickUp integration for task management, time tracking, and document operations."
+    title: "ClickUp"
+    type: "server"
+    dateAdded: "2025-10-18T00:00:00Z"
+    image: "node:20-alpine"
+    
+    # Tools provided by this server
+    tools:
+      - name: "getTaskById"
+        description: "Retrieve specific task details by task ID"
+      - name: "addComment"
+        description: "Add comments to tasks"
+      - name: "updateTask"
+        description: "Update task properties (status, assignees, due date, etc.)"
+      - name: "createTask"
+        description: "Create new tasks in ClickUp"
+      - name: "searchTasks"
+        description: "Search for tasks using filters"
+      - name: "searchSpaces"
+        description: "Search ClickUp spaces"
+      - name: "getListInfo"
+        description: "Get information about a specific list"
+      - name: "updateListInfo"
+        description: "Update list properties"
+      - name: "getTimeEntries"
+        description: "Retrieve time tracking entries"
+      - name: "createTimeEntry"
+        description: "Log time on tasks"
+      - name: "readDocument"
+        description: "Read ClickUp documents (Docs)"
+      - name: "searchDocuments"
+        description: "Search through ClickUp documents"
+      - name: "writeDocument"
+        description: "Create or update ClickUp documents"
+    
+    # Required secrets
+    secrets:
+      - name: "clickup.api_key"
+        env: "CLICKUP_API_KEY"
+        example: "your-clickup-api-token"
+      - name: "clickup.team_id"
+        env: "CLICKUP_TEAM_ID"
+        example: "your-team-id"
+    
+    # Environment variables
+    env:
+      - name: "CLICKUP_API_KEY"
+        value: "{{clickup.api_key}}"
+      - name: "CLICKUP_TEAM_ID"
+        value: "{{clickup.team_id}}"
+    
+    # Command to install and run
+    command:
+      - "sh"
+      - "-c"
+      - "npm install -g clickup-mcp-server@1.12.0 && exec npx clickup-mcp-server"
+    
+    # Configuration schema
+    config:
+      - name: "clickup"
+        description: "ClickUp server configuration"
+        type: "object"
+        properties:
+          api_key:
+            type: "string"
+            description: "ClickUp Personal API Token"
+          team_id:
+            type: "string"
+            description: "ClickUp Team/Workspace ID"
+        required: ["api_key", "team_id"]
+    
+    # Metadata
+    metadata:
+      category: "task-management"
+      tags: ["clickup", "task-management", "project-management", "productivity", "time-tracking", "documents"]
+      license: "ISC"
+      owner: "nsxdavid"
+    
+    # Documentation links
+    readme: "https://github.com/nsxdavid/clickup-mcp-server/blob/main/README.md"
+    source: "https://github.com/nsxdavid/clickup-mcp-server"
+    upstream: "https://www.npmjs.com/package/clickup-mcp-server"
+
