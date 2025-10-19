@@ -1,0 +1,209 @@
+name: production-servers
+displayName: Production MCP Servers
+registry:
+  # =========================================================================
+  # SEARCH & RESEARCH SERVERS
+  # =========================================================================
+  
+  brave-search:
+    description: "Brave Search API for privacy-focused web search"
+    title: "Brave Search"
+    type: "server"
+    image: "mcp/brave-search:latest"
+    secrets:
+      - name: "brave.api_key"
+        env: "BRAVE_API_KEY"
+        example: "BSAjKboJpJrVKmf8AMV87rCYyo3rowy"
+
+  exa-search:
+    description: "Exa semantic search for finding relevant content"
+    title: "Exa Search"
+    type: "server"
+    image: "mcp/exa:latest"
+    secrets:
+      - name: "exa.api_key"
+        env: "EXA_API_KEY"
+        example: "296048a9-6539-4352-957b-3370ed1b3fc2"
+
+  tavily-search:
+    description: "Tavily AI-powered search and extraction"
+    title: "Tavily Search"
+    type: "server"
+    image: "mcp/tavily:latest"
+    secrets:
+      - name: "tavily.api_token"
+        env: "TAVILY_API_KEY"
+        example: "tvly-xxx"
+
+  # =========================================================================
+  # TASK & PROJECT MANAGEMENT
+  # =========================================================================
+  
+  clickup-prod:
+    description: "ClickUp task and project management for Team 2218645"
+    title: "ClickUp Production"
+    type: "server"
+    image: "mcp/clickup:latest"
+    secrets:
+      - name: "clickup.api_key"
+        env: "CLICKUP_API_KEY"
+        example: "pk_4234856_xxx"
+      - name: "clickup.team_id"
+        env: "CLICKUP_TEAM_ID"
+        example: "2218645"
+    tools:
+      - name: "clickup_list_spaces"
+        description: "List ClickUp spaces for team"
+      - name: "clickup_get_tasks"
+        description: "Get tasks from ClickUp"
+      - name: "clickup_create_task"
+        description: "Create a new task"
+
+  task-orchestrator-prod:
+    description: "Local task and feature management with dependencies"
+    title: "Task Orchestrator"
+    type: "server"
+    image: "ghcr.io/jpicklyk/task-orchestrator:latest"
+    volumes:
+      - mcp-task-data:/app/data
+    tools:
+      - name: "create_task"
+      - name: "create_feature"
+      - name: "create_project"
+      - name: "search_tasks"
+      - name: "get_overview"
+
+  # =========================================================================
+  # KNOWLEDGE & REFERENCE
+  # =========================================================================
+  
+  wikipedia:
+    description: "Wikipedia information retrieval and research"
+    title: "Wikipedia"
+    type: "server"
+    image: "mcp/wikipedia-mcp:latest"
+    tools:
+      - name: "search_wikipedia"
+      - name: "get_article"
+      - name: "get_summary"
+      - name: "extract_key_facts"
+
+  # =========================================================================
+  # DEVELOPMENT TOOLS
+  # =========================================================================
+  
+  github-prod:
+    description: "GitHub repository and issue management"
+    title: "GitHub"
+    type: "server"
+    image: "mcp/github:latest"
+    secrets:
+      - name: "github.token"
+        env: "GITHUB_TOKEN"
+        example: "ghp_xxx"
+    tools:
+      - name: "create_issue"
+      - name: "list_issues"
+      - name: "create_pull_request"
+      - name: "search_repositories"
+
+  docker-management:
+    description: "Docker container and image management"
+    title: "Docker"
+    type: "server"
+    image: "mcp/docker:latest"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    tools:
+      - name: "list_containers"
+      - name: "start_container"
+      - name: "stop_container"
+      - name: "inspect_container"
+
+  # =========================================================================
+  # STORAGE & BACKUP
+  # =========================================================================
+  
+  google-cloud-storage:
+    description: "GCS backup system for legal documents (legal-draft-backup-evoluzion25)"
+    title: "Google Cloud Storage"
+    type: "server"
+    image: "mcp/gcs:latest"
+    secrets:
+      - name: "gcs.access_key"
+        env: "GCS_ACCESS_KEY"
+        example: "GOOG1EXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      - name: "gcs.secret_key"
+        env: "GCS_SECRET_KEY"
+        example: "your-gcs-secret-key-here"
+    env:
+      - name: GCS_BUCKET
+        value: "your-bucket-name"
+
+  # =========================================================================
+  # AI & MACHINE LEARNING
+  # =========================================================================
+  
+  huggingface-prod:
+    description: "Hugging Face models, datasets, and spaces access"
+    title: "Hugging Face"
+    type: "server"
+    image: "mcp/huggingface:latest"
+    secrets:
+      - name: "huggingface.token"
+        env: "HF_TOKEN"
+        example: "hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    tools:
+      - name: "search_models"
+      - name: "search_datasets"
+      - name: "download_model"
+
+  # =========================================================================
+  # INFRASTRUCTURE & DEVOPS
+  # =========================================================================
+  
+  cloudflare-api:
+    description: "Cloudflare API for DNS, tunnels, and edge services"
+    title: "Cloudflare"
+    type: "server"
+    image: "mcp/cloudflare:latest"
+    secrets:
+      - name: "cloudflare.api_key"
+        env: "CLOUDFLARE_API_KEY"
+        example: "07dd3afe7e878469dc2ca27dcd98489ae0102"
+
+  runpod-management:
+    description: "RunPod GPU instance and storage management"
+    title: "RunPod"
+    type: "server"
+    image: "mcp/runpod:latest"
+    secrets:
+      - name: "runpod.api_key"
+        env: "RUNPOD_API_KEY"
+        example: "rpa_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      - name: "runpod.s3_key"
+        env: "RUNPOD_S3_KEY"
+        example: "rps_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+  # =========================================================================
+  # UTILITIES & TOOLS
+  # =========================================================================
+  
+  time-util:
+    description: "Time and timezone conversion utilities"
+    title: "Time & Timezone"
+    type: "server"
+    image: "mcp/time:latest"
+    tools:
+      - name: "get_current_time"
+      - name: "convert_time"
+
+  youtube-transcripts:
+    description: "YouTube video transcript retrieval"
+    title: "YouTube Transcripts"
+    type: "server"
+    image: "mcp/youtube-transcript:latest"
+    tools:
+      - name: "get_transcript"
+      - name: "get_timed_transcript"
+      - name: "get_video_info"

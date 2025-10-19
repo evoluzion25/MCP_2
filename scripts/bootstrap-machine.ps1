@@ -33,7 +33,11 @@ switch ($Source) {
     Get-Content $EnvFile | ForEach-Object {
       $line = $_.Trim(); if (-not $line -or $line.StartsWith('#')) { return }
       $sp = $line -split '=',2; if ($sp.Count -ne 2) { return }
-      $kv[$sp[0].Trim()] = $sp[1].Trim()
+      $key = $sp[0].Trim()
+      $val = $sp[1].Trim()
+      # Trim surrounding quotes if present
+      if ($val.StartsWith('"') -and $val.EndsWith('"')) { $val = $val.Trim('"') }
+      $kv[$key] = $val
     }
   }
   'bitwarden' {
@@ -52,7 +56,8 @@ switch ($Source) {
 function Set-McpSecret {
   param([string]$Name,[string]$Value)
   if ($DryRun) { Write-Host "[DRY-RUN] set $Name" -ForegroundColor Yellow; return }
-  docker mcp secret set $Name --value $Value | Out-Null
+  # docker mcp secret set expects key[=value] form
+  docker mcp secret set "$Name=$Value" | Out-Null
 }
 
 # Apply per manifest

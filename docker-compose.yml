@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mcp-gateway:
+    image: docker/mcp-gateway:latest
+    container_name: mcp-gateway
+    restart: unless-stopped
+    command:
+      - --transport=sse
+      - --port=3333
+      - --servers=brave,exa,fetch,git,memory,playwright,puppeteer,sequentialthinking
+      - --verbose
+      - --block-secrets=false
+    ports:
+      - "3333:3333"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - BRAVE_API_KEY=${BRAVE_API_KEY}
+      - EXA_API_KEY=${EXA_API_KEY}
+    networks:
+      - mcp-network
+
+  cloudflare-tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: mcp-cloudflare-tunnel
+    restart: unless-stopped
+    command: tunnel --config /etc/cloudflared/docker-config.yml run
+    volumes:
+      - ${USERPROFILE}/.cloudflared:/etc/cloudflared:ro
+    depends_on:
+      - mcp-gateway
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge
