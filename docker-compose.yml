@@ -10,7 +10,7 @@ services:
       - --port=3333
       - --catalog=docker-mcp.yaml
       - --catalog=rg-mcp.yaml
-      - --servers=brave,exa,fetch,git,memory,playwright,puppeteer,sequentialthinking,clickup
+      - --servers=brave,clickup,desktop-commander,dockerhub,exa,fetch,filesystem,git,markdownify,memory,openbnb-airbnb,perplexity-ask,playwright,playwright-mcp-server,puppeteer,resend,sequentialthinking,task-orchestrator
       - --verbose
       - --block-secrets=false
     ports:

@@ -5,12 +5,15 @@ displayName: RG Custom MCP Catalog
 registry:
   clickup:
     description: "Search, create, and retrieve tasks and documents, add comments, and track time through natural language commands. Comprehensive ClickUp integration for task management, time tracking, and document operations."
-    title: "ClickUp"
+    title: "ClickUp (RG Custom)"
     type: "server"
     dateAdded: "2025-10-18T00:00:00Z"
     image: "mcp/clickup:1.12.0"
+    ref: ""
+    readme: "https://github.com/nsxdavid/clickup-mcp-server/blob/main/README.md"
+    toolsUrl: ""
+    icon: "https://www.google.com/s2/favicons?domain=clickup.com&sz=64"
     
-    # Tools provided by this server
     tools:
       - name: "getTaskById"
         description: "Retrieve specific task details by task ID"
@@ -39,7 +42,6 @@ registry:
       - name: "writeDocument"
         description: "Create or update ClickUp documents"
     
-    # Required secrets
     secrets:
       - name: "clickup.api_key"
         env: "CLICKUP_API_TOKEN"
@@ -48,16 +50,14 @@ registry:
         env: "CLICKUP_TEAM_ID"
         example: "your-team-id"
     
-    # Metadata
     metadata:
       category: "task-management"
       tags: ["clickup", "task-management", "project-management", "productivity", "time-tracking", "documents"]
       license: "ISC"
       owner: "nsxdavid"
     
-    # Documentation links
-    readme: "https://github.com/nsxdavid/clickup-mcp-server/blob/main/README.md"
+    prompts: 0
+    resources: {}
+    
     source: "https://github.com/nsxdavid/clickup-mcp-server"
     upstream: "https://www.npmjs.com/package/clickup-mcp-server"
-
-
