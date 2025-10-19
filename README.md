@@ -29,11 +29,15 @@ docker compose logs -f
 ```
 
 This starts:
-- ✅ MCP Gateway (port 3333) - serves 71 tools from 9 servers
+- ✅ MCP Gateway (port 3333) - serves 100 tools from 9 servers
 - ✅ Cloudflare Tunnel - exposes gateway to internet for ChatGPT
 - ✅ Auto-restart on boot
 
-**Active Servers**: brave-search, exa, fetch, git, memory, playwright, puppeteer, sequentialthinking, clickup (58 from docker-mcp + 13 from rg-mcp)
+**Active Servers**: 
+- From docker-mcp (58 tools): brave-search, exa, fetch, git, memory, playwright, puppeteer, sequentialthinking
+- From rg-mcp (42 tools): clickup
+
+See **[Custom Server Installation Guide](docs/CUSTOM_SERVER_INSTALLATION_GUIDE.md)** for adding more custom servers.
 
 See **[Docker Compose Architecture](docs/DOCKER_COMPOSE_ARCHITECTURE.md)** for full details.
 
@@ -64,6 +68,7 @@ This single command:
 
 ### Core Guides
 - **[Docker Compose Architecture](docs/DOCKER_COMPOSE_ARCHITECTURE.md)** ⭐ - Production-ready setup (RECOMMENDED)
+- **[Custom Server Installation](docs/CUSTOM_SERVER_INSTALLATION_GUIDE.md)** ⭐ - Complete guide to adding custom MCP servers
 - **[Catalog Strategy](docs/CATALOG_STRATEGY.md)** ⭐ - Two-catalog system (official + custom)
 - **[Architecture Overview](docs/ARCHITECTURE.md)** - Local + Internet access architecture
 - **[Bitwarden Setup Guide](docs/BITWARDEN_SETUP_GUIDE.md)** - Complete secret management setup
@@ -148,19 +153,19 @@ And more... see [manifest.yaml](secrets/manifest.yaml) for complete list.
 
 The gateway uses a **two-catalog strategy**:
 1. **docker-mcp** - Official catalog (100+ servers, read-only)
-2. **rg-mcp** - Custom catalog (1 server: ClickUp)
+2. **rg-mcp** - Custom catalog (your additions)
 
-See **[Catalog Strategy](docs/CATALOG_STRATEGY.md)** for details on adding custom servers.
+See **[Custom Server Installation Guide](docs/CUSTOM_SERVER_INSTALLATION_GUIDE.md)** for complete instructions on adding servers.
 
 ### Active Servers in Gateway
 
 **From docker-mcp** (8 servers, 58 tools):
 - brave-search, exa, fetch, git, memory, playwright, puppeteer, sequentialthinking
 
-**From rg-mcp** (1 server, 13 tools):
-- clickup (see [Adding ClickUp](docs/ADDING_CLICKUP_SERVER.md))
+**From rg-mcp** (1 server, 42 tools):
+- clickup (see [ClickUp Installation](docs/CLICKUP_INSTALLATION_COMPLETE.md))
 
-**Total**: 9 servers, 71 tools
+**Total**: 9 servers, 100 tools
 
 ### production-verified (Legacy Reference)
 Uses real Docker images with SHA256 hashes from official catalog:
@@ -284,13 +289,16 @@ Active servers:
 
 ### Core Guides
 - **[Docker Compose Architecture](docs/DOCKER_COMPOSE_ARCHITECTURE.md)** - Production setup guide (Recommended) ⭐
+- **[Custom Server Installation](docs/CUSTOM_SERVER_INSTALLATION_GUIDE.md)** - Adding custom MCP servers ⭐
 - **[Catalog Strategy](docs/CATALOG_STRATEGY.md)** - Two-catalog system & adding custom servers ⭐
+- **[MCP Server Architecture](docs/MCP_SERVER_ARCHITECTURE.md)** - Understanding ephemeral containers
 - **[Bitwarden Setup Guide](docs/BITWARDEN_SETUP_GUIDE.md)** - Complete secret management setup
 - **[Client Configuration](docs/CLIENT_CONFIGURATION.md)** - LM Studio, AnythingLLM, Claude setup
 - **[Complete Cleanup Report](docs/COMPLETE_CLEANUP_REPORT.md)** - What was removed & why
 - **[Gateway Tunnel Fix](docs/GATEWAY_TUNNEL_FIX.md)** - 502 error resolution guide
 - **[Adding Custom Servers](docs/ADDING_CUSTOM_SERVERS.md)** - How to add servers to catalogs
 - **[Adding ClickUp Server](docs/ADDING_CLICKUP_SERVER.md)** - ClickUp setup example
+- **[ClickUp Installation Complete](docs/CLICKUP_INSTALLATION_COMPLETE.md)** - ClickUp verification checklist
 - **[Setup New Servers](docs/SETUP_NEW_SERVERS_GUIDE.md)** - Production server configuration
 - **[Quick Reference](docs/QUICK_REFERENCE.md)** - Command cheat sheet
 - **[Toolkit UI Setup](docs/TOOLKIT_UI_SETUP.md)** - Troubleshooting Docker Desktop UI

@@ -52,6 +52,30 @@ The MCP_2 repository uses a **two-catalog strategy** for managing MCP servers:
 
 ## 🔧 How It Works
 
+### ⚠️ CRITICAL: Catalog Directory Must Be Mounted
+
+The gateway container MUST have access to `~/.docker/mcp/catalogs/` to read catalog files.
+
+**In docker-compose.yml:**
+```yaml
+services:
+  mcp-gateway:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${USERPROFILE}/.docker/mcp:/root/.docker/mcp:ro  # ← REQUIRED!
+```
+
+**Without this mount:**
+- Gateway can't read catalog files
+- All servers show "MCP server not found"
+- 0 tools listed
+- Gateway appears broken
+
+**With this mount:**
+- Gateway reads all catalogs successfully
+- Servers spawn on-demand
+- Tools listed correctly
+
 ### Catalog Precedence
 
 When the gateway starts, catalogs are loaded in this order:

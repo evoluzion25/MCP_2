@@ -1,17 +1,49 @@
 # ClickUp MCP Server - Installation Complete!
 
 **Date**: October 18, 2025  
-**Status**: ✅ ClickUp custom catalog successfully imported!
+**Status**: ✅ ClickUp successfully integrated with 42 tools!
 
 ---
 
 ## ✅ What's Done
 
-1. ✅ Created custom catalog YAML file (`catalogs/rg-mcp-catalog.yaml`)
-2. ✅ Added ClickUp server to `rg-mcp` custom catalog
-3. ✅ Verified ClickUp server is available in catalog
-4. ✅ 13 tools defined (task management, time tracking, documents)
-5. ✅ Added ClickUp to docker-compose.yml server list
+1. ✅ Built custom Docker image: `mcp/clickup:1.12.0`
+2. ✅ Created custom catalog YAML file (`catalogs/rg-mcp-catalog.yaml`)
+3. ✅ Added ClickUp server to `rg-mcp` custom catalog
+4. ✅ Updated docker-compose.yml:
+   - Added `--catalog=rg-mcp.yaml` flag
+   - Added `clickup` to --servers list
+   - Mounted catalog directory volume
+5. ✅ Fixed environment variable: `CLICKUP_API_TOKEN` (server's actual requirement)
+6. ✅ Verified gateway spawns ClickUp: **42 tools available**
+
+---
+
+## 📊 ClickUp Tools Available
+
+Gateway shows: `> clickup: (42 tools) (12 resources) (15 resourceTemplates)`
+
+**Task Management** (~15 tools):
+- getTaskById, createTask, updateTask, deleteTask
+- addComment, searchTasks, getTaskComments
+- And more...
+
+**Time Tracking** (~8 tools):
+- getTimeEntries, createTimeEntry, updateTimeEntry, deleteTimeEntry
+- getTimeEntryHistory, startTimeEntry, stopTimeEntry
+- And more...
+
+**Documents** (~5 tools):
+- readDocument, writeDocument, searchDocuments
+- createDoc, updateDoc, deleteDoc
+
+**Spaces & Lists** (~10 tools):
+- searchSpaces, getListInfo, updateListInfo
+- And more...
+
+**Resources** (12 resources + 15 templates):
+- Task resources, list resources, space resources
+- Time entry resources, document resources
 
 ---
 
@@ -19,12 +51,14 @@
 
 ### Step 1: Get ClickUp Credentials
 
-**ClickUp API Key**:
+**ClickUp API Token** (not "API Key"):
 1. Go to: https://app.clickup.com/
 2. Click your avatar → Settings
 3. Navigate to: Apps → API Token
 4. Click "Generate" or copy existing token
 5. Copy the token (starts with `pk_`)
+
+**Note**: The server expects `CLICKUP_API_TOKEN` environment variable (not `CLICKUP_API_KEY`).
 
 **ClickUp Team ID**:
 1. In ClickUp, go to Settings

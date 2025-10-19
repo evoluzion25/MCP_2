@@ -80,13 +80,16 @@ services:
     command:
       - --transport=sse
       - --port=3333
-      - --servers=brave,exa,fetch,git,memory,playwright,puppeteer,sequentialthinking
+      - --catalog=docker-mcp.yaml
+      - --catalog=rg-mcp.yaml
+      - --servers=brave,exa,fetch,git,memory,playwright,puppeteer,sequentialthinking,clickup
       - --verbose
       - --block-secrets=false
     ports:
       - "3333:3333"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ${USERPROFILE}/.docker/mcp:/root/.docker/mcp:ro
     environment:
       - BRAVE_API_KEY=${BRAVE_API_KEY}
       - EXA_API_KEY=${EXA_API_KEY}
